@@ -1,10 +1,12 @@
 phone_numbers = {}
 
+# Функція, щоб припините роботу боту.
 def close_bot():
     
             print("Good bye!")
             return False
 
+# Перевіряємо чи існують або не існують значення у нашому словнику.
 def check(input):
      check_command = input.split(' ')
      if check_command[0].lower() == 'add':
@@ -27,7 +29,7 @@ def check(input):
                     
 
 
-
+# Функція додавання нового контакту
 def add(input):
     contact = input.split(' ')
     if contact[0] == 'add':
@@ -38,7 +40,7 @@ def add(input):
         print(phone_numbers)
         return True
     
-
+# Функція зміни контакту
 def change(input):
      contact = input.split(' ')
      if contact[0] == 'change':
@@ -46,7 +48,7 @@ def change(input):
           phone_numbers[contact[0]] = contact[1]
           print(f'Change {contact[0]} succecful')
           return True
-     
+# Функція перегляду телефону за ім'ям     
 def phone(input):
      contact = input.split(' ')
      if contact[0] == 'phone':
@@ -55,20 +57,23 @@ def phone(input):
           return True
 
 def main():
-    question = True
+    question = True # Точка для роботи циклу
     while question == True:
-        
+        # Меню боту
         print("Hello\n It's your helper.\n You can use second command:\n1.hello\n2.add ...\n3.change ...\n4.phone ...\n5.show all\n6.good bye|close|exit")
-        
+        # ввод команди
         word = input("Write a comand: ")
+        #розділення введенного для обробки і визначення команди
         command = word.split()
-        
+        # перевірка, якщо нічого не ввели
         if len(command) == 0:
              print('You need write something!')
              continue
+        # якщо введенно одне слово, додаємо до масив ще один єлемент, щоб не виникала помилка при обробці подвійних команд
         elif len(command) == 1:
              command.append(' ')
         
+        # розбір введеннох інформації за командами
         if word.lower() == 'close' or word.lower() == 'good bye' or word.lower() == 'exit':
             question = close_bot()
         elif command[0].lower() == 'add':
